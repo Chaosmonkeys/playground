@@ -1,0 +1,17 @@
+<Upsource>
+  <version>
+    <version>5</version>
+  </version>
+  <userAchievementCounterBean>
+    <userId>
+      <userId>3cc52c5c-ea9b-4b1b-aa62-986f7ea06e69</userId>
+      <userName>admin</userName>
+    </userId>
+    <counters>
+      <achievementCounterBean>
+        <counterType>TEXT_SEARCH</counterType>
+        <value>2</value>
+      </achievementCounterBean>
+    </counters>
+  </userAchievementCounterBean>
+</Upsource>

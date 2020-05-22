@@ -1,0 +1,32 @@
+## This file contains Upsource Frontend launch configuration.
+## To edit it please first copy it to the "upsource-frontend.launch.config" file.
+## To change the setting uncomment it first.
+## To apply the changes you made in this file, please restart Upsource Frontend using its scripts from the "bin" folder.
+
+## Upsource Frontend display name
+#display-name=Upsource Frontend
+
+## Upsource Frontend description
+#description=Upsource Frontend
+
+## Upsource Frontend start timeout in seconds
+#start-timeout-seconds=3600
+
+## Upsource Frontend stop timeout in seconds
+#stop-timeout-seconds=300
+
+## Upsource Frontend Java libraries directory.
+## The path should be either absolute or relative to the Upsource Frontend home directory.
+#lib-dir=../../lib/upsource
+
+## Upsource Frontend logs directory.
+## The path should be either absolute or relative to the Upsource Frontend home directory.
+#logs-dir=logs
+
+## Upsource Frontend launcher logs directory.
+## The path should be either absolute or relative to the Upsource Frontend logs directory.
+#launcher.logs-dir=.
+
+## Path to the YourKit installation to use to profile Upsource Frontend.
+## The path should be either absolute or relative to the Upsource Frontend home directory.
+#yourkit-home=

@@ -1,0 +1,32 @@
+## This file contains Apache Cassandra launch configuration.
+## To edit it please first copy it to the "cassandra.launch.config" file.
+## To change the setting uncomment it first.
+## To apply the changes you made in this file, please restart Apache Cassandra using its scripts from the "bin" folder.
+
+## Apache Cassandra display name
+#display-name=Apache Cassandra
+
+## Apache Cassandra description
+#description=NoSQL column-oriented database
+
+## Apache Cassandra start timeout in seconds
+#start-timeout-seconds=3600
+
+## Apache Cassandra stop timeout in seconds
+#stop-timeout-seconds=300
+
+## Apache Cassandra Java libraries directory.
+## The path should be either absolute or relative to the Apache Cassandra home directory.
+#lib-dir=lib
+
+## Apache Cassandra logs directory.
+## The path should be either absolute or relative to the Apache Cassandra home directory.
+#logs-dir=logs
+
+## Apache Cassandra launcher logs directory.
+## The path should be either absolute or relative to the Apache Cassandra logs directory.
+#launcher.logs-dir=.
+
+## Path to the YourKit installation to use to profile Apache Cassandra.
+## The path should be either absolute or relative to the Apache Cassandra home directory.
+#yourkit-home=

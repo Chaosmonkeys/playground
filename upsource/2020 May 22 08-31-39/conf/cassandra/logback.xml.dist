@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+  <!-- Do not modify this file (it will be overwritten on service's start and during upgrade of Upsource)!
+       To change the configuration - copy the file as 'logback.xml' and modify its content.
+
+       NOTE: logback.xml will be deleted during upgrade of Upsource.
+   -->
+  <property name="log.pattern" value="%d{&quot;yyyy-MM-dd'T'HH:mm:ss,SSS&quot;} [%thread] %-5level %logger{36} - %msg%n"/>
+  <property name="roll.file.size" value="10MB"/>
+  <property name="roll.max.files" value="5"/>
+
+  <if condition='!isDefined("cassandra.log.disable.console")'>
+    <then>
+      <appender name="CONSOLE-WARN" class="ch.qos.logback.core.ConsoleAppender">
+        <target>System.err</target>
+
+        <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
+          <level>WARN</level>
+        </filter>
+
+        <encoder>
+          <pattern>${log.pattern}</pattern>
+        </encoder>
+      </appender>
+      <root>
+        <appender-ref ref="CONSOLE-WARN"/>
+      </root>
+    </then>
+  </if>
+
+  <if condition='isDefined("cassandra.log.dir")'>
+    <then>
+      <appender name="ROLL-DEBUG" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>${cassandra.log.dir}/debug.log</file>
+
+        <rollingPolicy class="ch.qos.logback.core.rolling.FixedWindowRollingPolicy">
+          <fileNamePattern>${cassandra.log.dir}/debug.%i.log</fileNamePattern>
+          <minIndex>1</minIndex>
+          <maxIndex>${roll.max.files}</maxIndex>
+        </rollingPolicy>
+
+        <triggeringPolicy class="ch.qos.logback.core.rolling.SizeBasedTriggeringPolicy">
+          <maxFileSize>${roll.file.size}</maxFileSize>
+        </triggeringPolicy>
+
+        <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
+          <level>DEBUG</level>
+        </filter>
+
+        <encoder>
+          <pattern>${log.pattern}</pattern>
+        </encoder>
+      </appender>
+
+      <appender name="ROLL-INFO" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>${cassandra.log.dir}/info.log</file>
+
+        <rollingPolicy class="ch.qos.logback.core.rolling.FixedWindowRollingPolicy">
+          <fileNamePattern>${cassandra.log.dir}/info.%i.log</fileNamePattern>
+          <minIndex>1</minIndex>
+          <maxIndex>${roll.max.files}</maxIndex>
+        </rollingPolicy>
+
+        <triggeringPolicy class="ch.qos.logback.core.rolling.SizeBasedTriggeringPolicy">
+          <maxFileSize>${roll.file.size}</maxFileSize>
+        </triggeringPolicy>
+
+        <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
+          <level>INFO</level>
+        </filter>
+
+        <encoder>
+          <pattern>${log.pattern}</pattern>
+        </encoder>
+      </appender>
+
+      <appender name="ROLL-WARN" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>${cassandra.log.dir}/warn.log</file>
+
+        <rollingPolicy class="ch.qos.logback.core.rolling.FixedWindowRollingPolicy">
+          <fileNamePattern>${cassandra.log.dir}/warn.%i.log</fileNamePattern>
+          <minIndex>1</minIndex>
+          <maxIndex>${roll.max.files}</maxIndex>
+        </rollingPolicy>
+
+        <triggeringPolicy class="ch.qos.logback.core.rolling.SizeBasedTriggeringPolicy">
+          <maxFileSize>${roll.file.size}</maxFileSize>
+        </triggeringPolicy>
+
+        <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
+          <level>WARN</level>
+        </filter>
+
+        <encoder>
+          <pattern>${log.pattern}</pattern>
+        </encoder>
+      </appender>
+
+      <appender name="ROLL-ERROR" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>${cassandra.log.dir}/error.log</file>
+
+        <rollingPolicy class="ch.qos.logback.core.rolling.FixedWindowRollingPolicy">
+          <fileNamePattern>${cassandra.log.dir}/error.%i.log</fileNamePattern>
+          <minIndex>1</minIndex>
+          <maxIndex>${roll.max.files}</maxIndex>
+        </rollingPolicy>
+
+        <triggeringPolicy class="ch.qos.logback.core.rolling.SizeBasedTriggeringPolicy">
+          <maxFileSize>${roll.file.size}</maxFileSize>
+        </triggeringPolicy>
+
+        <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
+          <level>ERROR</level>
+        </filter>
+
+        <encoder>
+          <pattern>${log.pattern}</pattern>
+        </encoder>
+      </appender>
+
+      <appender name="ASYNC-ROLL-DEBUG" class="ch.qos.logback.classic.AsyncAppender">
+        <appender-ref ref="ROLL-DEBUG"/>
+        <includeCallerData>true</includeCallerData>
+      </appender>
+
+      <appender name="ASYNC-ROLL-INFO" class="ch.qos.logback.classic.AsyncAppender">
+        <appender-ref ref="ROLL-INFO"/>
+        <includeCallerData>true</includeCallerData>
+      </appender>
+
+      <appender name="ASYNC-ROLL-WARN" class="ch.qos.logback.classic.AsyncAppender">
+        <appender-ref ref="ROLL-WARN"/>
+        <includeCallerData>true</includeCallerData>
+      </appender>
+
+      <root>
+        <!-- Uncomment to get debug logging, see <root> tag below too -->
+        <!-- <appender-ref ref="ASYNC-ROLL-DEBUG"/> -->
+        <appender-ref ref="ASYNC-ROLL-INFO"/>
+        <appender-ref ref="ASYNC-ROLL-WARN"/>
+        <appender-ref ref="ROLL-ERROR"/>
+      </root>
+    </then>
+  </if>
+
+  <!-- Change to DEBUG to get debug logging -->
+  <root level="INFO" />
+
+  <!-- Do not log warning from CLibrary about JNA on Windows platform -->
+  <if condition='property("os.name").toLowerCase().startsWith("windows")'>
+    <then>
+      <logger name="org.apache.cassandra.utils.CLibrary" level="ERROR"/>
+    </then>
+  </if>
+</configuration>

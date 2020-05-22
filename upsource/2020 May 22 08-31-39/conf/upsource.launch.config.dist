@@ -1,0 +1,32 @@
+## This file contains Upsource launch configuration.
+## To edit it please first copy it to the "upsource.launch.config" file.
+## To change the setting uncomment it first.
+## To apply the changes you made in this file, please restart Upsource using its scripts from the "bin" folder.
+
+## Upsource display name
+#display-name=Upsource
+
+## Upsource description
+#description=Upsource Service
+
+## Upsource start timeout in seconds
+#start-timeout-seconds=18000
+
+## Upsource stop timeout in seconds
+#stop-timeout-seconds=1800
+
+## Upsource Java libraries directory.
+## The path should be either absolute or relative to the Upsource home directory.
+#lib-dir=lib
+
+## Upsource logs directory.
+## The path should be either absolute or relative to the Upsource home directory.
+#logs-dir=logs
+
+## Upsource launcher logs directory.
+## The path should be either absolute or relative to the Upsource logs directory.
+#launcher.logs-dir=.
+
+## Path to the YourKit installation to use to profile Upsource.
+## The path should be either absolute or relative to the Upsource home directory.
+#yourkit-home=

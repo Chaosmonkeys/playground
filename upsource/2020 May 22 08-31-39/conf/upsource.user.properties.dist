@@ -1,0 +1,5 @@
+### This is a template, copy it to upsource.user.properties before modifying
+### Content of this file will be overwritten on upgrade
+
+# Enable smtp connection debugging. default: false
+#upsource.mail.smtp.debug=true
